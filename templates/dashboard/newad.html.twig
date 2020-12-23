@@ -16,7 +16,7 @@
                                 <!-- profile-edit-wrap -->
                                 <div class="profile-edit-wrap">
                                     <div class="profile-edit-page-header">
-                                        <h2>Add Listing</h2>
+                                        <h2>Ajouter une Pub</h2>
                                         <div class="breadcrumbs"><a href="#">Home</a><a href="#">Dasboard</a><span>Add Listing</span></div>
                                     </div>
                                     <div class="row">
@@ -26,26 +26,24 @@
                                                     <!-- user-profile-menu-->
                                                     <div class="user-profile-menu">
                                                         <h3>Main</h3>
-                                                        <ul>
+                                                        <ul> 
                                                             <li><a href="dashboard.html"><i class="fa fa-gears"></i>Dashboard</a></li>															
-                                                            <li><a href="dashboard-myprofile.html"><i class="fa fa-user-o"></i> Edit profile</a></li>
-                                                            <li><a href="dashboard-messages.html"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
-                                                            <li><a href="dashboard-password.html"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
+                                                            <li><a href="{{ path('edit_account_register', {'slug':app.user.slug }) }}"><i class="fa fa-user-o"></i> Editer le profile</a></li>
+                                                            <li><a href="{{ path('edit_account_register', {'slug':app.user.slug }) }}"><i class="fa fa-unlock-alt"></i>Changer Password</a></li>
                                                         </ul>
                                                     </div>
                                                     <!-- user-profile-menu end-->
-                                                    <!-- user-profile-menu-->
+                                                    <!-- user-profile-menu
                                                     <div class="user-profile-menu">
                                                         <h3>Listings</h3>
                                                         <ul>
-                                                            <li><a href="dashboard-listing-table.html"><i class="fa fa-th-list"></i> My listigs  </a></li>
-                                                            <li><a href="dashboard-bookings.html"> <i class="fa fa-calendar-check-o"></i> Bookings <span>2</span></a></li>
+                                                            <li><a href="dashboard-bookings.html"> <i class="fa fa-calendar-check-o"></i>  <span>2</span></a></li>
                                                             <li><a href="dashboard-review.html"><i class="fa fa-comments-o"></i> Reviews </a></li>
                                                             <li><a href="dashboard-add-listing.html" class="user-profile-act"><i class="fa fa-plus-square-o"></i> Add New</a></li>
                                                         </ul>
-                                                    </div>
+                                                    </div>-->
                                                     <!-- user-profile-menu end-->                                        
-                                                    <a href="#" class="log-out-btn">Log Out</a>
+                                                    <a href="#" class="{{path('account_logout')}}">Se déconnecter</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,17 +153,7 @@
                         <div class="cirle-bg">
                             <div class="bg" data-bg="images/bg/circle.png"></div>
                         </div>
-                        <div class="container">
-                            <div class="join-wrap fl-wrap">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h3>Do You Have Questions ?</h3>
-                                        <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
-                                    </div>
-                                    <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i class="fa fa-envelope-o"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </section>
                     <!-- section end -->
                 </div>

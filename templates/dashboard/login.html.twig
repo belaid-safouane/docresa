@@ -9,12 +9,11 @@
 
         <div class="main-register-holder">
             <div class="main-register fl-wrap">
-                <div class="close-reg"><i class="fa fa-times"></i></div>
-                <h3>Sign In <span>City<strong>Book</strong></span></h3>
+               
+                <h3>Se connecter à <span>Docto<strong>Life</strong></span></h3>
                 <div id="tabs-container">
                     <ul class="tabs-menu">
                         <li class="current"><a href="#tab-1">Login</a></li>
-                        <li class="current"><a href="{{path('account_register')}}">Register</a></li>
                     </ul>
                     <div class="tab">
                         <div id="tab-1" class="tab-content">
@@ -24,19 +23,19 @@
                                        ou le mot de passe est invalide </div>
                                 {% endif %}
                                 <form action="{{path('account_login')}}" method="post" name="registerform">
-                                    <label>Username or Email Address * </label>
+                                    <label>Adresse Email  * </label>
                                     <input name="_username" type="email" id="email"  onClick="this.select()" value="">
-                                    <label >Password * </label>
+                                    <label >Mot de passe * </label>
                                     <input name="_password" type="password"   onClick="this.select()" value="" >
                                     <button type="submit"  class="log-submit-btn"><span>Log In</span></button>
                                     <div class="clearfix"></div>
                                     <div class="filter-tags">
                                         <input id="check-a" type="checkbox" name="check">
-                                        <label for="check-a">Remember me</label>
+                                        <label for="check-a">Rester connécté</label>
                                     </div>
                                 </form>
                                 <div class="lost_password">
-                                    <a href="#">Lost Your Password?</a>
+                                    <a href="#">Mot de passe oublié?</a>
                                 </div>
                             </div>
                         </div>

@@ -492,7 +492,7 @@ blockquote p {
 	float:right;
 	position:relative;
 	top:20px;
-	margin-left:50px;
+	margin-left:70px;
 	margin-right:40px;
 }
 .header-user-menu:after {
@@ -4809,7 +4809,7 @@ footer.main-footer {
 	float:left;
 	width:100%;
 	position:relative;
-	padding:90px 0 0 0;
+	padding:0px 0 0 0;
 	z-index:50;
 	overflow: hidden;
 }
@@ -4837,7 +4837,7 @@ footer.main-footer.fixed-footer {
 	padding-bottom:25px;
 }
 .sub-footer {
-	margin-top:40px;
+	margin-top:0px;
 	background:#24324F;
 	padding:28px 0;
 }

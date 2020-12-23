@@ -30,8 +30,9 @@ class RegistrationType extends AbstractType
             ->add('lastname',TextType::class , $this->getconfiguration('Nom','entrer votre nom'))
             ->add('email',TextType::class , $this->getconfiguration('Email','entrer votre email'))
             ->add('hash',PasswordType::class , $this->getconfiguration('Mot de passe','entrer votre password'))
+            ->add('passwordConfirm',PasswordType::class , $this->getconfiguration('confirmation du mot de passe','veuillez confirmer votre mot de passe'))
             ->add('introduction',TextType::class , $this->getconfiguration('Code postal cabinet','entrer votre Code postal cabinet'))
-            ->add('description',TextType::class , $this->getconfiguration('Numéro de téléphone','entrer votre Numéro de téléphone'))            
+            ->add('telephone',TextType::class , $this->getconfiguration('Numéro de téléphone','entrer votre Numéro de téléphone'))            
             ->add('category', EntityType::class,[
                 'class' => Category::class,
                 'choice_label' => 'title',

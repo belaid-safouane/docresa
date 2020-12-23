@@ -95,7 +95,8 @@ public function editregister(User $user ,Request $request, EntityManagerInterfac
 
     return $this->render('dashboard/account/editregistration.html.twig',[
         'form' => $form->createView(),
-        'hasError' => $error !== null
+        'hasError' => $error !== null,
+        
     ]);
     }
 
@@ -139,7 +140,16 @@ public function editregister(User $user ,Request $request, EntityManagerInterfac
 
 
     /**
- * permet d'afficher le formulaire d'inscription
+     * redirection vers la page de remerciement pour l'inscription
+     * @Route("/congrat", name="congrat")
+     */
+    public function congrat(){
+
+        return $this->render('congrat.html.twig');
+    }
+
+    /**
+ * permet d'afficher le formulaire d'inscription d'un medecin prevenant du site
  * 
  * @Route("/registerpro", name="account_registerpro")
  *
@@ -156,11 +166,8 @@ public function registerpro(Request $request, EntityManagerInterface $manager,Au
         $manager->persist($user);
         $manager->flush();
 
-        $this->addFlash(
-            'success',
-            "Merci pour votre inscription en vous contacteras le plus vite possible !"
-        );
-        return $this->redirectToRoute('home');
+        
+        return $this->redirectToRoute('congrat');
     }
 
     return $this->render('dashboard/account/registrationpro.html.twig',[

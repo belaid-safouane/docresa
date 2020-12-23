@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -51,6 +52,11 @@ class User implements UserInterface
     private $hash;
 
     /**
+     * @Assert\EqualTo(propertyPath="hash", message="vous n'avez pas confirmer correctement votre mot de passe ")
+     */
+    public $passwordConfirm;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $introduction;
@@ -58,7 +64,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    private $telephone;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -93,13 +99,19 @@ class User implements UserInterface
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", mappedBy="users")
+     */
+    private $userRoles;
+
     public function __construct()
     {
         $this->ads = new ArrayCollection();
+        $this->userRoles = new ArrayCollection();
     }
     public function __toString()
     {
-            return $this->getDescription();
+            return $this->getTelephone();
     }
 
     /**
@@ -198,14 +210,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getTelephone(): ?string
     {
-        return $this->description;
+        return $this->telephone;
     }
 
-    public function setDescription(string $description): self
+    public function setTelephone(string $telephone): self
     {
-        $this->description = $description;
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -255,7 +267,13 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        $roles = $this->userRoles->map(function($roles){
+            return $roles->getTitle();
+        })->toArray();
+        
+        $roles[] = "ROLE_USER";
+
+        return $roles;
     }
     public function getPassword()
     {
@@ -322,6 +340,34 @@ class User implements UserInterface
     public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getUserRoles(): Collection
+    {
+        return $this->userRoles;
+    }
+
+    public function addUserRole(Role $userRole): self
+    {
+        if (!$this->userRoles->contains($userRole)) {
+            $this->userRoles[] = $userRole;
+            $userRole->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserRole(Role $userRole): self
+    {
+        if ($this->userRoles->contains($userRole)) {
+            $this->userRoles->removeElement($userRole);
+            $userRole->removeUser($this);
+        }
 
         return $this;
     }

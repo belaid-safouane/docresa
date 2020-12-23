@@ -71,7 +71,8 @@ public function createad(Request $request, EntityManagerInterface  $manager){
     }
    
     return $this->render('dashboard/newad.html.twig',[
-        'form' => $form->createView()
+        'form' => $form->createView(),
+        'ad' => $ad
     ]);
 }
 
@@ -93,10 +94,6 @@ public function editad(Ad $ad, Request $request, EntityManagerInterface  $manage
         $manager->flush();
 
  
-        $this->addFlash(
-            'success',
-            "L'annonce <strong>{$ad->getName()}</strong> a bien été modifiée !"
-        );
 
         return $this->redirectToRoute('ads_show',[
             'slug' => $ad->getSlug()

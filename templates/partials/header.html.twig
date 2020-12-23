@@ -12,11 +12,24 @@
      <header class="main-header dark-header fs-header sticky">
          <div class="header-inner">
              <div class="logo-holder">
-                 <a href="{{path('home')}}"><img src="" alt=""></a>
+                 <a href="{{path('home')}}"><img src="images/logo_doclife.png" alt=""></a>
              </div>
-             
-             
-             <a href="{{path('account_register')}}" class="add-list">Vous êtes professionnel de santé ? <span><i class="fa fa-plus"></i></span></a>
+             {% if app.user %}
+             <div class="header-user-menu">
+                <div class="header-user-name">
+                    <span><img src="/images/properties/{{app.user.filename}}" alt=""></span>
+                    {{ app.user.firstname }} {{ app.user.lastname }}
+                </div>
+                <ul>
+                    <li><a href="dashboard-myprofile.html"> Edit profile</a></li>
+                    <li><a href="#">  Bookings  </a></li>
+                    <li><a href="{{path('account_logout')}}">Log Out</a></li>
+                </ul>
+            </div>
+
+            {% endif %}
+
+             <a href="{{path('account_registerpro')}}" class="add-list">Vous êtes professionnel de santé ? <span><i class="fa fa-plus"></i></span></a>
              
              <div class="show-reg-form "><a href="#" style ="color:white"> <i class="fa fa-sign-in"></i>Besoin d'aide ?</a></div>
 
